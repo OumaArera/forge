@@ -1,0 +1,11 @@
+{% extends "email/base.html" %}
+{% block heading %}Confirm your email address{% endblock %}
+{% block body %}
+  <p style="margin:0 0 16px;">{{ user.display_name }},</p>
+  <p style="margin:0;">Follow the link below to finish setting up your FORGE account. It works for {{ hours }} hours.</p>
+{% endblock %}
+{% block action %}
+  {% with action_label="Confirm my address" %}
+    {% include "email/_button.html" %}
+  {% endwith %}
+{% endblock %}

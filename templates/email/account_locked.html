@@ -1,0 +1,13 @@
+{% extends "email/base.html" %}
+{% block heading %}Your account was temporarily locked{% endblock %}
+{% block body %}
+  <p style="margin:0 0 16px;">{{ user.display_name }},</p>
+  <p style="margin:0 0 16px;">
+    FORGE locked your account after {{ attempts }} failed sign-in attempts. It
+    unlocks automatically at <strong style="color:#0c2142;">{{ until }}</strong>.
+  </p>
+  <p style="margin:0 0 8px;font-size:14px;color:#334155;">
+    If that was you, wait and try again. If it was not, somebody is guessing your
+    password — change it once you can get in, and tell the faculty advisor.
+  </p>
+{% endblock %}

@@ -1,0 +1,21 @@
+{{ invitation.invited_by_name }} has invited you to FORGE.
+
+{% if invitation.message %}They wrote:
+
+    {{ invitation.message }}
+
+{% endif %}FORGE is where students of the Open University of Kenya propose
+projects, build them in teams across schools, and accumulate a verifiable
+record of what they have actually done.
+
+Accept the invitation:
+
+    {{ action_url }}
+
+This link works for {{ days }} days and can only be used once.
+{% if invitation.role %}
+You are being invited as: {{ invitation.role_label }}.
+{% endif %}
+If you were not expecting this, ignore it.
+
+-- FORGE, The Open University of Kenya

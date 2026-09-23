@@ -1,0 +1,11 @@
+{{ user.display_name }},
+
+Confirm your email address to finish setting up your FORGE account:
+
+{{ link }}
+
+This link works for {{ hours }} hours. If you did not ask for it, ignore this
+message and nothing will happen.
+
+FORGE is a voluntary student initiative of The Open University of Kenya. It
+awards no academic credit and is not part of your assessment.

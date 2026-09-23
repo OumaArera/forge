@@ -1,0 +1,17 @@
+{{ user.display_name }},
+
+Confirm this address as the recovery address for your FORGE account:
+
+    {{ action_url }}
+
+This link works for {{ hours }} hours.
+
+Why this matters: your University email address stops working when you
+graduate. Your FORGE portfolio does not — it is the record you show an
+employer, and it outlives your enrolment. Without a recovery address you
+would lose access to it at exactly the moment it becomes most useful.
+
+If you did not ask for this, ignore it. Nothing changes until the link is
+followed.
+
+-- FORGE, The Open University of Kenya

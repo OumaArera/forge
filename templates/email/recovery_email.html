@@ -1,0 +1,19 @@
+{% extends "email/base.html" %}
+{% block heading %}Confirm your recovery address{% endblock %}
+{% block body %}
+  <p style="margin:0 0 16px;">{{ user.display_name }},</p>
+  <p style="margin:0 0 16px;">
+    Confirm <strong style="color:#0c2142;">{{ address }}</strong> as the recovery
+    address for your FORGE account.
+  </p>
+  <p style="margin:0 0 6px;font-size:14px;color:#334155;">
+    Your University email address stops working when you graduate. Your portfolio
+    does not — it is the record you show an employer. Without a recovery address
+    you would lose access to it at exactly the moment it becomes most useful.
+  </p>
+{% endblock %}
+{% block action %}
+  {% with action_label="Confirm this address" %}
+    {% include "email/_button.html" %}
+  {% endwith %}
+{% endblock %}

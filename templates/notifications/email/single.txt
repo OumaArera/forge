@@ -1,0 +1,7 @@
+{{ notification.summary }}
+
+Open FORGE: {{ base_url }}{{ notification.url }}
+
+--
+You are getting this because it needs your attention. Change what FORGE emails
+you about at {{ base_url }}/settings/notifications

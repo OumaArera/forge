@@ -1,0 +1,10 @@
+{{ user.display_name }},
+
+Confirm your email address to finish setting up your FORGE account:
+
+    {{ action_url }}
+
+This link works for {{ hours }} hours. If you did not ask for it, ignore this
+message and nothing will happen.
+
+-- FORGE, The Open University of Kenya

@@ -1,0 +1,20 @@
+[tool.ruff]
+# 99 rather than 88: several field definitions and help_text strings read
+# better on one line, and the codebase naturally sits just under 100.
+line-length = 99
+target-version = "py310"
+exclude = [".venv", "*/migrations/*", "staticfiles"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "C4", "DJ", "RUF"]
+ignore = [
+    "B008",    # function call in default argument: normal in DRF field definitions
+    "RUF012",  # mutable class attrs: Django's Meta and DRF's fields lists are fine
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]
+"config/settings/*" = ["F403", "F405"]  # star imports are the settings idiom
+
+[tool.ruff.lint.isort]
+known-first-party = ["forge", "config"]

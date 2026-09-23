@@ -1,0 +1,11 @@
+{{ user.display_name }},
+
+Your FORGE account was temporarily locked after {{ attempts }} failed sign-in
+attempts. It unlocks automatically at {{ until }}.
+
+If that was you, wait and try again — or ask the faculty advisor to reset it.
+
+If it was not you, somebody is guessing your password. Change it as soon as
+you can get in, and tell the faculty advisor.
+
+-- FORGE, The Open University of Kenya

@@ -1,0 +1,12 @@
+{{ user.display_name }},
+
+{{ count }} thing{{ count|pluralize }} happened on FORGE since we last wrote.
+{% for category, items in grouped.items %}
+{{ category }}
+{% for item in items %}  - {{ item.summary }}
+{% endfor %}{% endfor %}
+Open FORGE: {{ base_url }}
+
+--
+This is your digest. Change how often you get it, or turn it off, at
+{{ base_url }}/settings/notifications

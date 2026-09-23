@@ -1,0 +1,33 @@
+{% extends "email/base.html" %}
+{% block heading %}You have been invited to FORGE{% endblock %}
+{% block body %}
+  <p style="margin:0 0 16px;">
+    <strong style="color:#0c2142;">{{ invitation.invited_by_name }}</strong> has
+    invited you to join FORGE.
+  </p>
+  {% if invitation.message %}
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0"
+           style="border-left:3px solid #1f6fe5;background:#f8fafc;margin:0 0 18px;">
+      <tr><td style="padding:12px 16px;font-size:14px;color:#334155;font-style:italic;">{{ invitation.message }}</td></tr>
+    </table>
+  {% endif %}
+  <p style="margin:0 0 14px;">
+    FORGE is where students propose projects, build them in teams drawn from every
+    school, and accumulate a record of their work that two other people have
+    confirmed.
+  </p>
+  {% if invitation.role %}
+    <p style="margin:0 0 6px;font-size:14px;">
+      You are being invited as
+      <strong style="color:#0c2142;">{{ invitation.role_label }}</strong>.
+    </p>
+  {% endif %}
+  <p style="margin:0;font-size:13px;color:#64748b;">
+    This link works for {{ days }} days and can be used once.
+  </p>
+{% endblock %}
+{% block action %}
+  {% with action_label="Accept the invitation" %}
+    {% include "email/_button.html" %}
+  {% endwith %}
+{% endblock %}

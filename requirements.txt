@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------------
+# FORGE backend dependencies
+# Pinned deliberately: a student maintainer joining in two years should be
+# able to reproduce this environment exactly.
+# ---------------------------------------------------------------------------
+
+# Core
+Django==5.1.13
+djangorestframework==3.15.2
+django-environ==0.11.2
+psycopg[binary]==3.2.3
+
+# API surface
+drf-spectacular==0.27.2          # OpenAPI schema + Swagger/Redoc
+django-filter==24.3
+djangorestframework-simplejwt==5.3.1
+
+# Identity (OIDC-ready; the pilot runs on verified University email)
+social-auth-app-django==5.4.2
+PyJWT==2.9.0
+
+# Cross-cutting
+django-cors-headers==4.4.0
+django-storages==1.14.4
+Pillow==10.4.0
+cryptography==43.0.1             # Ed25519 signing of portfolio exports
+reportlab==4.2.5                 # certificate PDFs
+
+# Background work
+celery==5.4.0
+redis==5.0.8
+django-redis==5.4.0              # cache backend, which is also the throttle store
+django-celery-beat==2.7.0
+
+# Operations
+gunicorn==23.0.0
+whitenoise==6.7.0
+sentry-sdk==2.14.0
+
+# Development / quality
+pytest==8.3.3
+pytest-django==4.9.0
+pytest-cov==5.0.0
+factory-boy==3.3.1
+pypdf==5.1.0                     # reading back generated PDFs in tests
+freezegun==1.5.1
+ruff==0.6.8

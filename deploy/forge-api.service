@@ -1,0 +1,55 @@
+# /etc/systemd/system/forge-api.service
+#
+# FORGE — the student project and collaboration platform for the Open
+# University of Kenya. Serves forge-api.zafrika.com.
+#
+# Sized for a shared 1 vCPU / 2 GB droplet that already runs a dozen other
+# services: two workers, two threads each. Workers are recycled every 700
+# requests so that a slow leak in any one of them cannot accumulate on a box
+# where only a few hundred megabytes are ever free.
+
+[Unit]
+Description=FORGE API (gunicorn)
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+
+[Service]
+# No Type=: the default `simple` is what the other Django services on this
+# box use, and gunicorn under it has been stable here for months. Matching a
+# proven unit beats being clever on a machine somebody else also depends on.
+User=arera
+Group=www-data
+WorkingDirectory=/var/www/forge-api
+Environment="DJANGO_SETTINGS_MODULE=config.settings.prod"
+Environment="PATH=/var/www/forge-api/.venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+# The socket must be group-writable so nginx (www-data) can reach it.
+UMask=007
+# No EnvironmentFile: django-environ reads .env itself, and systemd would
+# otherwise need its own parsing of the same file.
+
+ExecStart=/var/www/forge-api/.venv/bin/gunicorn \
+  config.wsgi:application \
+  --workers 2 \
+  --threads 2 \
+  --max-requests 700 --max-requests-jitter 100 \
+  --timeout 60 --graceful-timeout 30 \
+  --bind unix:/var/www/forge-api/forge.sock \
+  --access-logfile - --error-logfile -
+
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=5
+
+# Hardening. The app writes only to its own media and staticfiles.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/var/www/forge-api
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target
