@@ -1,0 +1,14 @@
+# Public portfolios, the showcase and certificate verification are meant to be
+# found — that is the whole employability argument. The signed-in application
+# is not, and neither are the one-time links people receive by email.
+User-agent: *
+Allow: /$
+Allow: /showcase
+Allow: /p/
+Allow: /verify-certificate
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /administration
+Disallow: /verify
+Disallow: /accept-invitation
+Disallow: /choose-password

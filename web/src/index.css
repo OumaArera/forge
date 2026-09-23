@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/*
+ * FORGE design tokens.
+ *
+ * The palette is taken from the mark: a deep navy that carries the University's
+ * seriousness, a brighter blue for anything actionable, and the amber from the
+ * tassel for recognition — levels, badges, confirmed work. Amber is used
+ * sparingly and always means "this was earned", never just decoration.
+ */
+@theme {
+  /* Navy — structure: the sidebar, headings, the darkest surfaces. */
+  --color-navy-50: #eff5fc;
+  --color-navy-100: #d8e6f7;
+  --color-navy-200: #b0cbef;
+  --color-navy-300: #7ea8e2;
+  --color-navy-400: #4a7fd0;
+  --color-navy-500: #2563b8;
+  --color-navy-600: #1a4b96;
+  --color-navy-700: #143a75;
+  --color-navy-800: #102c58;
+  --color-navy-900: #0c2142;
+  --color-navy-950: #071630;
+
+  /* Brand blue — anything the member can act on. */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #1f6fe5;
+  --color-brand-700: #1857c4;
+  --color-brand-800: #17489e;
+  --color-brand-900: #173e7d;
+
+  /* Amber — earned recognition only. */
+  --color-ember-50: #fffbeb;
+  --color-ember-100: #fef3c7;
+  --color-ember-200: #fde68a;
+  --color-ember-300: #fcd34d;
+  --color-ember-400: #fbbf24;
+  --color-ember-500: #f59e0b;
+  --color-ember-600: #d97706;
+  --color-ember-700: #b45309;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --radius-card: 0.875rem;
+}
+
+/*
+ * Semantic surface tokens, redefined for dark mode. Components reference these
+ * rather than raw palette steps, so a theme change is one place, not two
+ * hundred class names.
+ */
+:root {
+  --surface-page: var(--color-slate-50, #f8fafc);
+  --surface-card: #ffffff;
+  --surface-sunken: #f1f5f9;
+  --surface-border: #e2e8f0;
+  --text-strong: var(--color-navy-900);
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --sidebar-bg: var(--color-navy-900);
+  --sidebar-fg: #c3d4ea;
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active: var(--color-navy-700);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-page: #0a1526;
+    --surface-card: #0f2035;
+    --surface-sunken: #142943;
+    --surface-border: #1e3a5c;
+    --text-strong: #eaf2ff;
+    --text-body: #c2d3e8;
+    --text-muted: #8aa4c4;
+    --sidebar-bg: #071322;
+    --sidebar-fg: #a9c0dc;
+    --sidebar-fg-active: #ffffff;
+    --sidebar-active: #143055;
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface-page: #0a1526;
+  --surface-card: #0f2035;
+  --surface-sunken: #142943;
+  --surface-border: #1e3a5c;
+  --text-strong: #eaf2ff;
+  --text-body: #c2d3e8;
+  --text-muted: #8aa4c4;
+  --sidebar-bg: #071322;
+  --sidebar-fg: #a9c0dc;
+  --sidebar-fg-active: #ffffff;
+  --sidebar-active: #143055;
+}
+
+@theme inline {
+  --color-page: var(--surface-page);
+  --color-card: var(--surface-card);
+  --color-sunken: var(--surface-sunken);
+  --color-line: var(--surface-border);
+  --color-strong: var(--text-strong);
+  --color-body: var(--text-body);
+  --color-muted: var(--text-muted);
+  --color-sidebar: var(--sidebar-bg);
+  --color-sidebar-fg: var(--sidebar-fg);
+  --color-sidebar-fg-active: var(--sidebar-fg-active);
+  --color-sidebar-active: var(--sidebar-active);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible focus for keyboard users, suppressed for pointer users. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--text-muted) 35%, transparent);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
